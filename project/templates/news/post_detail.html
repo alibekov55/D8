@@ -1,0 +1,52 @@
+{% extends 'flatpages/default.html' %}
+{% block title %} Post {% endblock title %}
+{% block content %}
+<table>
+    <thead>
+        <th>
+            Name
+        </th>
+        <th>
+            title
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Text
+        </th>
+        <th>
+            author
+        </th>
+        <th>
+            rating
+        </th>
+    </thead>
+    <tr>
+        <td>
+            {{ post.name|title }}
+        </td>
+        <td>
+            {{ post.category.name|title }}
+        </td>
+        <td>
+            {{ post.title }}
+        </td>
+        <td>
+            {{ post.date }}
+        </td>
+        <td>
+            {{ post.text }}
+        </td>
+        <td>
+            {{ post.author }}
+        </td>
+        <td>
+            {{ post.rating }}
+        </td>
+    </tr>
+</table>
+{% endblock content %}
