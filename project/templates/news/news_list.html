@@ -2,16 +2,17 @@
 {% load custom_filters %} <!-- не забываем заранее загружать наши фильтры! -->
 {% block title %} News {% endblock title %}
 {% block content %}
+<!-- <br>
+    <form method="GET">
+        {{ filter.form }}
+        <input class="btn btn-dark text-uppercase"  type="submit" value="Найти">
+    </form>
+<br> -->
 <table>
+    <br><h3>{{ time_now }}</h3>
     <h1>Всего Новостей: {{ news|length }}</h1>
-    <h3>{{ time_now }}</h3>
     <hr>
-<br>
-        <form method="GET">
-            {{ filter.form }}
-            <input type="submit" value="Найти">
-        </form>
-<br>
+
     <thead>
         <th>
             Name
@@ -69,7 +70,7 @@
     {% endfor %}
 </table>
 
-<a href="{% url 'post_create' %}">Добавить новую новость</a> <br>
+<h3><a href="{% url 'post_create' %}">Добавить новую новость</a></h3> <br>
 
 {% if is_paginated %}
 
