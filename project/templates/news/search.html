@@ -2,12 +2,76 @@
 {% load custom_filters %}
 {% block title %}News{% endblock title %}
 {% block content %}
-    <h1>Все News</h1>
-    <a href="{% url 'news_add' %}">Создать post</a>
+    <h1>Поиск статей</h1>
+
     <form method="GET">
         {{ filter.form }}
-        <input type="submit" value="Найти">
+        <input class="btn btn-dark text-uppercase"  type="submit" value="Найти">
     </form>
+
+
+<table>
+    <h3>{{ time_now }}</h3>
+    <hr>
+
+    <thead>
+        <th>
+            Name
+        </th>
+        <th>
+            title
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Text
+        </th>
+        <th>
+            author
+        </th>
+        <th>
+            rating
+        </th>
+    </thead>
+    {% for post in filter.qs %}
+    <!-- поменяем products на filter.qs, т.к. теперь мы забираем уже отобранную по каким-то параметрам информацию -->
+
+    <tr>
+        <td>
+            <a href="{% url 'post_detail' post.id %}">{{ post.name|title }}</a> <!-- При нажатии на имя товара в таблице нас теперь будет перекидывать на страницу с самого товара -->
+            <a href="{% url 'post_update' post.id %}"><u>Редактировать</u></a> <!-- добавим ссылку на редактирование товара-->
+            <a href="{% url 'post_delete' post.id %}"><u> Удалить </u></a> <!-- добавим ссылку на удаление товара-->
+        </td>
+        <td>
+            {{ post.name|title }}
+        </td>
+        <td>
+            {{ post.category.name|title }}
+        </td>
+        <td>
+            {{ post.title|censor }}
+        </td>
+        <td>
+            {{ post.date }}
+        </td>
+        <td> <!--  'category', 'title',  'rating']-->
+            {{ post.text|censor }}
+        </td>
+        <td>
+            {{ post.author }}
+        </td>
+        <td>
+            {{ post.rating }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
     <hr>
         {% for post in news %} <!-- filter.qs -->
         <div>

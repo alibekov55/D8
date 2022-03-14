@@ -29,6 +29,7 @@ class NewsList(ListView):
 class PostCreateView(CreateView):
     template_name = 'news/post_create.html'
     form_class = PostForm
+    permission_required = ('news.add_post', )
 
     def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
         return f'/news/{self.id}'
