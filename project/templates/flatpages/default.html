@@ -42,13 +42,22 @@
                <li class="nav-item">
                    <a class="nav-link" href="/news">Contact</a>
                </li>
-
+               <!--
                <li class="nav-item">
                    <a class="nav-link" href="/sign/signup/">Регистрация</a>
                </li>
                <li class="nav-item">
                    <a class="nav-link" href="/accounts/login/?next=/">Войти/Выйти</a>
-               </li>
+               </li> -->
+
+               {% if request.user.is_authenticated %}
+               <li class="last"> {{user.username}} | <a href="/sign/logout/">Выйти</a> </li>
+               {% else %}
+               <li class="last"><a href="/sign/signup/">Регистрация</a>|<a href="/accounts/login/">Войти</a></li>
+               <!-- <li class="nav-item">
+                   <a class="nav-link" href="/">Войти/Выйти</a>
+               </li> -->  <!-- /accounts/login/?next=/ -->
+               {% endif %}
 
            </ul>
        </div>
