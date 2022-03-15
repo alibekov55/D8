@@ -5,12 +5,27 @@
 {% endblock %}
 
 {% block content %}
+
 <h2>Страница авторизованного пользователя {{request.user.username}}</h2>
 {% if is_not_author %}
+    <br>
+    <p>{{request.user.username}} Вы можете стать автором новостей, а также их редактировать</p>
+    <div class="d-flex justify-content-center mb-4"><a class="btn btn-dark text-uppercase" href="sign/upgrade/"> Стать автором!</a></div>
+    <!-- <button> <a href="sign/upgrade/"> Хочу стать Автором!</a> </button> -->
+{% endif %}
+
+
+{% if is_not_author %}
+    <p>{{request.user.username}} Если желаете можете добавлять свои статьи/новости, а также их редактировать или простот ухнать новости мира</p>
+    <div class="d-flex justify-content-center mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'news_list' %}">Перейти ко всем статьям</a></div>
+{% endif %}
+
+<br>
+{% if is_not_author %}
+    <p>{{request.user.username}} если Вы желаете выйти!</p>
     <div class="d-flex justify-content-center mb-4"><a class="btn btn-dark text-uppercase" href="sign/logout/"> Выйти!</a></div>
     <!-- <div class="d-flex justify-content-center mb-4"><a class="btn btn-dark text-uppercase" href="sign/upgrade/"> Стать автором!</a></div> -->
-    <p>Авторы могут добавлять свои статьи/новости, а также их редактировать</p>
-{% endif %}    
-<div class="d-flex justify-content-center mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'news_list' %}">Перейти ко всем статьям</a></div>
+{% endif %}
+
 
 {% endblock %}
