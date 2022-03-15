@@ -9,6 +9,7 @@ from datetime import datetime
 from .models import Post #Products, Category,
 from .filters import SearchFilter
 from .forms import PostForm
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 # из списка на главной странице уберём всё лишнее
@@ -26,7 +27,7 @@ class NewsList(ListView):
         return context
 
 # дженерик для создания объекта. Надо указать только имя шаблона и класс формы, который мы написали в прошлом юните. Остальное он сделает за вас
-class PostCreateView(CreateView):
+class PostCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'news/post_create.html'
     form_class = PostForm
     permission_required = ('news.add_post', )
